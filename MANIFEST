@@ -1,0 +1,8 @@
+CHANGES
+lib/SVG/Graph/Kit.pm
+lib/SVG/Graph/Kit.pm.new
+Makefile.PL
+MANIFEST			This list of files
+MANIFEST.SKIP
+t/SVG-Graph-Kit.t
+META.yml                                 Module meta-data (added by MakeMaker)
