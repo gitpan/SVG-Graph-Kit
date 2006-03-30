@@ -1,7 +1,7 @@
-# $Id: Kit.pm,v 1.1.1.1 2006/03/27 00:49:39 gene Exp $
+# $Id: Kit.pm,v 1.2 2006/03/30 04:38:48 gene Exp $
 
 package SVG::Graph::Kit;
-$VERSION = '0.00_1';
+$VERSION = '0.00_2';
 use strict;
 use warnings;
 use Carp;
@@ -30,15 +30,19 @@ sub new {
 
 sub _init {
     my $self = shift;
+    # Give unto us a frame!
     my $master_frame = $self->add_frame();
-    for my $item ( @_ ) {  # For each LoH argument...
+    # Each item is a hashref with data or presentation info.
+    for my $item ( @_ ) {
+        # I never do nuthin' wrong but I always get the blame.
         my $frame = $master_frame->add_frame();
-        # Add glyphs and data sets.
         while( my( $key, $val ) = each %$item ) {
             if( $key eq 'data' ) {
+                # Make sure that the data is a proper dataset.
                 $frame->add_data( dataset( $val ) );
             }
             else {
+                # Assume that the value is a proper CSS hashref.
                 $frame->add_glyph( $key, %$val );
             }
         }
@@ -48,22 +52,20 @@ sub _init {
 sub dataset {
     my $data = shift;
 
+    return $data if ref($data) eq 'SVG::Graph::Data';
+
     my $dataset = [];
 
-    for my $point ( @$data ) {
-        # Handle arrays of arrays or numbers.
-        if( ref $point eq 'ARRAY' || not(ref $point) ) {
-            my $label = 'x';  # Datum labels go x, y, z.
-
-            # Are we an array or a number?
-            $point = ref $point eq 'ARRAY'
-                ? { map { $label++ => $_ } @$point }
-                : { $label => $point }
+    for my $datum ( @$data ) {
+        $datum = [ $datum ] unless ref $datum;
+        if( ref($datum) eq 'ARRAY' ) {
+            my $x = 'x';
+            $datum = { map { $x++ => $_ } @$datum };
         }
-
-        # Add out data point to the data set.
-        push @$dataset, ref $point eq 'SVG::Graph::Data::Datum'
-            ? $point : SVG::Graph::Data::Datum->new( %$point );
+        if( ref($datum) eq 'HASH' ) {
+            $datum = SVG::Graph::Data::Datum->new( %$datum )
+        }
+        push @$dataset, $datum;
     }
 
     return SVG::Graph::Data->new( data => $dataset );
@@ -80,29 +82,26 @@ SVG::Graph::Kit - Simplified data plotting
 =head1 SYNOPSIS
 
   use SVG::Graph::Kit;
-  my $r = shift || 50;
-  my $m = shift || 20;
+  my @x = qw( 2 3 5 7 11 13 17 19 23 29 31 37 41 );
   my $i = 0;
+  while( (my $p = <>) =~ s/\D//g && ++$i <= $max ) {
+     push @x, $p;
+  }
+  $i = 0;
   my $g = SVG::Graph::Kit->new(
-    width => 600, height => 600, margin => 30,
-    items => [
+     width => 600, height => 600, margin => 30,
+     items => [
         { axis => { 'x_absolute_ticks' => 1, 'y_absolute_ticks' => 1,
-                    'stroke' => 'black', 'stroke-width' => 2 },
+                    'stroke' => 'gray', },
+          data => [ [0,0], [ $x[-1], $x[-1] ] ],
+          line => { stroke => 'gray' },
         },
-        { data => [ map { [ $i++, int(rand $r)] }
-            qw(2 3 5 7 11 13 17 19 23 29 31 37 41) ],
-          scatter => { fill => 'white', 'fill-opacity' => 1,
-            stroke => 'blue' },
-          line => { fill => 'yellow', 'fill-opacity' => 0.5,
-            stroke => 'yellow' },
+        { data => [ map { [ ++$i, $_ ] } @x ],
+          line => { stroke => 'yellow' },
+          scatter => { stroke => 'blue' },
         },
-        { data => [ map { [int(rand $r), int(rand $r)] } 0 .. $m ],
-          bar => { fill => 'green', 'fill-opacity' => 0.5,
-            stroke => 'green' },
-        },
-    ],
+     ],
   );
-
   print $g->draw;
 
 =head1 DESCRIPTION
@@ -124,8 +123,8 @@ The arguments can be any valid C<SVG::Graph> construction parameters,
 like width and height, plus an B<item> list of data and glyphs.  The
 glyphs are defined by C<SVG::Graph>.  The data can be a 1D list of
 numbers, an array reference of 1, 2 or 3-D data points, a hash
-reference with "x, y, z" keyed coordinates or a list of
-C<SVG::Graph::Data::Datum> points.
+reference with "x, y, z" keyed coordinates, a list of
+C<SVG::Graph::Data::Datum> points or a C<SVG::Graph::Data> object.
 
 =head1 SEE ALSO
 

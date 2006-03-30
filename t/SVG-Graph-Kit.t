@@ -7,12 +7,13 @@ use lib 'lib';
 use_ok 'SVG::Graph::Kit';
 
 TODO: {
-    local $TODO = "SVG::Graph fails without constructor arguments";
+    local $TODO = "without constructor arguments";
     my $g = eval { SVG::Graph::Kit->new };
-#    warn $@ if $@;
+    warn $@ if $@;
     isa_ok $g, 'SVG::Graph::Kit';
 }
 
+__END__
 my $i = 0;
 my %args = (
     width => 600, height => 600, margin => 30,
@@ -33,8 +34,6 @@ my %args = (
         },
     ],
 );
-
-__END__
 my $g = eval { SVG::Graph::Kit->new(%args) };
 print $g->draw;
 warn $@ if $@;
