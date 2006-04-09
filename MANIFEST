@@ -1,4 +1,6 @@
 CHANGES
+eg/normalize-primes
+eg/normalized.svg
 lib/SVG/Graph/Kit.pm
 lib/SVG/Graph/Kit.pm.new
 Makefile.PL

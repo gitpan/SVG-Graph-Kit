@@ -3,12 +3,15 @@ Changes file for SVG::Graph::Kit
 0.00_1 Sun Mar 19 22:17:32 2006
     - Created by Module::Husbandry.
 
-0.00_2 Wed Mar 29
+0.00_2 Wed Mar 29 2006
     - Cleaned things up a bit.
 
-0.00_3 Sun Apr 2
+0.00_3 Sun Apr 2 2006
     - Added automatic axis plotting.
 
-0.004 
+0.00_4 Apr 5 2006
     - Ack. Left the autoaxis code commented-out. Grrrrr.
     - Added the crucial scaling factor variable to the autoaxis.
+
+0.00_5 Apr 9 2006
+    - Fixed auto-axis.

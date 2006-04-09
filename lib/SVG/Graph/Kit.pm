@@ -1,7 +1,7 @@
-# $Id: Kit.pm,v 1.5 2006/04/06 03:31:51 gene Exp $
+# $Id: Kit.pm,v 1.7 2006/04/09 19:10:15 gene Exp $
 
 package SVG::Graph::Kit;
-$VERSION = '0.00_4';
+$VERSION = '0.00_5';
 use strict;
 use warnings;
 use Carp;
@@ -16,17 +16,17 @@ sub new {
 
     # Strip-off the glyph and data item layers.
     my %kit = ();
-    if( $args{_autoaxis} ) {
-        $kit{_autoaxis} = $args{_autoaxis};
-        delete $args{_autoaxis};
-        $args{width}  ||= 600;
-        $args{height} ||= 600;
-        $args{margin} ||= 35;
+    if( $args{_axis} ) {
+        $kit{_axis} = $args{_axis};
+        delete $args{_axis};
     }
     if( $args{_items} ) {
         $kit{_items} = $args{_items};
         delete $args{_items};
     }
+    $args{width}  ||= 600;
+    $args{height} ||= 600;
+    $args{margin} ||= 35;
 
     # Construct the SVG::Graph object with the remaining arguments.
     my $self = $class->SUPER::new( %args );
@@ -42,17 +42,19 @@ sub _init {
     my $self = shift;
     my %args = @_;
 
-    if( $args{_autoaxis} ) {
-        my $x = $args{_autoaxis}->{x};
-        my $y = $args{_autoaxis}->{y};
-        my $s = $args{_autoaxis}->{s} || 1;
+    if( $args{_axis} ) {
+        my $x = $args{_axis}->{x};
+        my $y = $args{_axis}->{y};
+        my $s = $args{_axis}->{s} || 1;
 
-        # The scaled magnitude.
-        $x ||= (int $args{_autoaxis}->{m} / $args{_autoaxis}->{s}) || 1;
-        # Largest data-point.
-        $y ||= $args{_autoaxis}->{n} || 1;
+        $x ||= (int $args{_axis}->{m} / $args{_axis}->{s}) || 1;
+        $y ||= $args{_axis}->{n} || 1;
+#die "$x, $y\n";
 
-        my $labels = [ map { $_ * $x } 0 .. $y ];
+        my $xlabels = $args{_axis}->{xlabels} ||
+            [ map { $_ * $x } 0 .. $y ];
+        my $ylabels = $args{_axis}->{ylabels} || $xlabels;
+
         my $grid = 'palegray';
         my $line = { stroke => $grid, fill => $grid, 'fill-opacity' => 0.5, };
 
@@ -60,23 +62,26 @@ sub _init {
             # Create an axis.
             { axis => {
                 #x_intercept => 100, y_intercept => 100,
-                x_absolute_ticks => $x, y_absolute_ticks => $x,
-                x_tick_labels => $labels, y_tick_labels => $labels,
+                ( $args{_axis}->{fractional}
+                    ? ( x_fractional_ticks => scalar(@$xlabels),
+                        y_fractional_ticks => scalar(@$ylabels) )
+                    : ( x_absolute_ticks => $x, y_absolute_ticks => $x )
+                ),
+                x_tick_labels => $xlabels,
+                y_tick_labels => $ylabels,
                 stroke => $grid,
               },
             },
-            # Create the reference lines.
-            { data => [ [ 0, 0 ], [ $y, $y ] ],
-              line => $line,
-            },
-            ( map { {
-                data => [ [ 0, $_ * $x ], [ $y, $_ * $x ] ],
-                line => $line,
-              } } 1 .. $y / $x ),
-            ( map { {
-                data => [ [ $_ * $x, 0 ], [ $_ * $x, $y ] ],
-                line => $line,
-              } } 1 .. $y / $x );
+            { data => [ [ 0, 0 ], [ $y, $y ] ], line => $line },
+            ( !$args{_axis}->{grid} ? () :  # Create the reference lines.
+# XXX This is pure bloat. :( Use grid => 0 unless the plot has <=10 ticks.
+                (
+                ( map { { data => [ [ $_ * $x, 0 ], [ $_ * $x, $y ] ],
+                          line => $line } } 1 .. $y / $x ),
+                ( map { { data => [ [ 0, $_ * $x ], [ $y, $_ * $x ] ],
+                          line => $line } } 1 .. $y / $x ),
+                )
+            );
     }
 
     # Give unto us a frame!
@@ -135,8 +140,14 @@ SVG::Graph::Kit - Simplified data plotting
   my $i = 0;
   my $data = [ map { [ ++$i, $_ ] } @x ];
   my $g = SVG::Graph::Kit->new(
-    _autoaxis => { m => @x, n => $x[-1], s => @x, },
     _items => [
+        { axis => {
+            x_fractional_ticks => scalar(@x),
+            y_fractional_ticks => scalar(@x),
+            stroke => $stroke, },
+          data => [ [ 0, 0 ], [ 1, 1 ] ],
+          line => $line,
+        },
         { data => $data, line => { stroke => 'yellow'}, },
         { data => $data, scatter => { stroke => 'blue' }, },
     ],
@@ -166,11 +177,11 @@ an array reference of 1, 2 or 3-D data points, a hash reference with
 "x, y, z" keyed coordinates, a list of C<SVG::Graph::Data::Datum>
 points or a C<SVG::Graph::Data> object.
 
-If this method is invoked with the optional B<_autoaxis> parameter,
-an axis with scaled labels and grid-lines is automatically added to
-the graph.  This parameter should be a hash reference having keys
-B<m>, B<n> and B<s> that are used as the number of ticks plotted and
-the largest tick desired and the scaling factor, respectively.
+An axis must be specified for this module to display any data.
+This can be done by adding standard C<SVG::Graph> axis items or by
+providing an B<_axis> hash reference.  This feature is under
+developement.  Please see the C<eg/normalize-primes> program for a
+working example.
 
 =head1 SEE ALSO
 
