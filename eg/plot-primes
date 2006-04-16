@@ -3,8 +3,10 @@ use strict;
 use warnings;
 use lib '/Users/gene/bin/SVG-Graph-Kit/lib';
 use SVG::Graph::Kit;
+use Math::BigInt;
 
 my $x = shift || 20;
+my $f = shift || 10;
 @ARGV = '/Users/gene/bin/math/primes/0000002_611953.txt';
 
 my $i = 0;
@@ -12,20 +14,21 @@ my @x = ();
 push @x, $_ while ($_ = <>) =~ s/\D//g && ++$i <= $x;
 
 my $y = $x[-1];
-my $s = $x / $y;
-my $sinv = $y / $x;
+#my $y = Math::BigInt->new( $x[-1] );
 
 $i = 0;
 my $d = [ map { [ ++$i, $_ ] } @x ];
 
 my $g = SVG::Graph::Kit->new(
     _axis => {
-        grid => 1, x => $x, y => $y, ys => $sinv,
-        ylabels => [ map { sprintf '%.2f', $_ * $sinv } 0 .. $x ],
+        grid => 1,
+        x => $x, y => $y,
+        xs => int $x / $f,
+        ys => int $y / $f,
     },
     _items => [
-        { data => $d, line => { stroke => 'yellow' } },
-        { data => $d, scatter => { stroke => 'blue' } },
+#        { data => $d, line => {} },
+        { data => $d, scatter => {} },
     ],
 );
 

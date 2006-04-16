@@ -15,3 +15,7 @@ Changes file for SVG::Graph::Kit
 
 0.00_5 Apr 9 2006
     - Fixed auto-axis.
+
+0.00_6 Apr 14 2006
+    - More fixin'... And now the auto-axis finally works. Yay!
+    - Added scaling factors.

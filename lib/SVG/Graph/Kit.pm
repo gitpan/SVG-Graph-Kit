@@ -1,7 +1,7 @@
-# $Id: Kit.pm,v 1.7 2006/04/09 19:10:15 gene Exp $
+# $Id: Kit.pm,v 1.8 2006/04/16 01:40:30 gene Exp $
 
 package SVG::Graph::Kit;
-$VERSION = '0.00_5';
+$VERSION = '0.00_6';
 use strict;
 use warnings;
 use Carp;
@@ -43,45 +43,47 @@ sub _init {
     my %args = @_;
 
     if( $args{_axis} ) {
-        my $x = $args{_axis}->{x};
-        my $y = $args{_axis}->{y};
-        my $s = $args{_axis}->{s} || 1;
+        my $xs = $args{_axis}->{xs} || $args{_axis}->{s} || 1;
+        my $ys = $args{_axis}->{ys} || $args{_axis}->{s} || 1;
 
-        $x ||= (int $args{_axis}->{m} / $args{_axis}->{s}) || 1;
-        $y ||= $args{_axis}->{n} || 1;
-#die "$x, $y\n";
+        my $x = $args{_axis}->{x} || 0;
+        my $xlabels ||= $args{_axis}->{xlabels};
+        unless( $xlabels ) {
+            for( my $i = 0; $i <= $x; $i += $xs )
+                { push @$xlabels, $i; }
+        }
+        my $xsize = @$xlabels - 1;
 
-        my $xlabels = $args{_axis}->{xlabels} ||
-            [ map { $_ * $x } 0 .. $y ];
-        my $ylabels = $args{_axis}->{ylabels} || $xlabels;
+        my $y = $args{_axis}->{y} || 0;
+        my $ylabels ||= $args{_axis}->{ylabels};
+        unless( $ylabels ) {
+            for( my $i = 0; $i <= $y; $i += $ys )
+                { push @$ylabels, $i; }
+        }
+        my $ysize = @$ylabels - 1;
 
         my $grid = 'palegray';
-        my $line = { stroke => $grid, fill => $grid, 'fill-opacity' => 0.5, };
+        my $line = { stroke => $grid };
 
         unshift @{ $args{_items} },
-            # Create an axis.
             { axis => {
-                #x_intercept => 100, y_intercept => 100,
-                ( $args{_axis}->{fractional}
-                    ? ( x_fractional_ticks => scalar(@$xlabels),
-                        y_fractional_ticks => scalar(@$ylabels) )
-                    : ( x_absolute_ticks => $x, y_absolute_ticks => $x )
-                ),
+                x_absolute_ticks => $xs,
                 x_tick_labels => $xlabels,
+                y_absolute_ticks => $ys,
                 y_tick_labels => $ylabels,
-                stroke => $grid,
-              },
+                stroke => $grid, },
             },
-            { data => [ [ 0, 0 ], [ $y, $y ] ], line => $line },
-            ( !$args{_axis}->{grid} ? () :  # Create the reference lines.
-# XXX This is pure bloat. :( Use grid => 0 unless the plot has <=10 ticks.
-                (
-                ( map { { data => [ [ $_ * $x, 0 ], [ $_ * $x, $y ] ],
-                          line => $line } } 1 .. $y / $x ),
-                ( map { { data => [ [ 0, $_ * $x ], [ $y, $_ * $x ] ],
-                          line => $line } } 1 .. $y / $x ),
-                )
+            { data => [ [0, 0], [$x, $y] ], line => $line },
+            # XXX Use grid=>0 unless the plot has <=50 ticks.
+            ( !$args{_axis}->{grid} ? () : (
+                ( map { {
+                    data => [ [$_ * $xs, 0], [$_ * $xs, $y] ], line => $line
+                } } 1 .. $xsize ),
+                ( map { {
+                    data => [ [0, $_ * $ys], [$x, $_ * $ys] ], line => $line
+                } } 1 .. $ysize ))
             );
+#use Data::Dumper;die Dumper($args{_items}[0]);
     }
 
     # Give unto us a frame!
@@ -136,29 +138,81 @@ SVG::Graph::Kit - Simplified data plotting
 =head1 SYNOPSIS
 
   use SVG::Graph::Kit;
+
   my @x = qw(2 3 5 7 11 13 17 19 23 29 31 37 41);
+  my $x = @x;
+  my $y = $x[-1];
   my $i = 0;
-  my $data = [ map { [ ++$i, $_ ] } @x ];
+  my $d = [ map { [ ++$i, $_ ] } @x ];
+  my @items = (
+    { data => $d, line => { stroke => 'yellow' } },
+    { data => $d, scatter => { stroke => 'blue' } },
+  );
+
+  # Explicitly declared SVG::Graph axis.
   my $g = SVG::Graph::Kit->new(
-    _items => [
-        { axis => {
-            x_fractional_ticks => scalar(@x),
-            y_fractional_ticks => scalar(@x),
-            stroke => $stroke, },
-          data => [ [ 0, 0 ], [ 1, 1 ] ],
-          line => $line,
+    _items => [ {
+            axis => {
+                x_fractional_ticks => $x,
+                y_absolute_ticks => 1,
+                stroke => 'palegray', # etc.
+            },
+            data => [ [0, 0], [$x, $y] ],
+            line => { stroke => 'palegray' },
         },
-        { data => $data, line => { stroke => 'yellow'}, },
-        { data => $data, scatter => { stroke => 'blue' }, },
+        @items,
     ],
   );
+
+  # Absolute x and y ticks on an auto-axis.  Use grid=>0 for large x*y.
+  $g = SVG::Graph::Kit->new(
+    _axis => { grid => 1, y => $y, x => $x },
+    _items => $items,
+  );
+
+  # Ticks and grid lines at a locked-step factor apart.
+  $g = SVG::Graph::Kit->new(
+    _axis => { grid => 1, x => $x, y => $y, s => 2 },
+    _items => $items,
+  );
+
+  # Ticks and grid lines at different step factors apart.
+  $g = SVG::Graph::Kit->new(
+    _axis => { grid => 1,
+        x => $x, y => $y,
+        xs => 2, ys => 5,
+    },
+    _items => $items,
+  );
+
+  # Scale the x and y ticks.  Use this technique for large data sets.
+  $g = SVG::Graph::Kit->new(
+    _axis => { grid => 1,
+        x => $x, y => $y,
+        xs => int $x / 10,
+        ys => int $y / 10,
+    },
+    _items => $items,
+  );
+
+  # Scale the y ticks to fit x (yeilding decimal y tick lables).
+  my $s = $y / $x;
+  $g = SVG::Graph::Kit->new(
+    _axis => { grid => 1,
+        x => $x, y => $y,
+        ys => $s,
+        ylabels => [ map { sprintf '%.2f', $_ * $s } 0 .. $x ],
+    },
+    _items => $items,
+  );
+
   print $g->draw;
 
 =head1 DESCRIPTION
 
 An C<SVG::Graph::Kit> object is a simplified, automated tool that
-allows data plotting without requiring knowledge of the C<SVG::Graph>
-API.
+allows data plotting without requiring any knowledge of the
+C<SVG::Graph> API.
 
 =head1 PUBLIC METHODS
 
