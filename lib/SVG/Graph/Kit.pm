@@ -1,7 +1,7 @@
-# $Id: Kit.pm,v 1.8 2006/04/16 01:40:30 gene Exp $
+# $Id: Kit.pm 695 2006-04-16 01:40:30Z gene $
 
 package SVG::Graph::Kit;
-$VERSION = '0.00_6';
+$VERSION = '0.00_7';
 use strict;
 use warnings;
 use Carp;
@@ -95,7 +95,7 @@ sub _init {
         while( my( $key, $val ) = each %$item ) {
             if( $key eq 'data' ) {
                 # Make sure that the data is a proper data set first.
-                $frame->add_data( dataset( $val ) );
+                $frame->add_data( _dataset( $val ) );
             }
             else {
                 # Assume that the value is a proper CSS hashref.
@@ -105,7 +105,7 @@ sub _init {
     }
 }
 
-sub dataset {
+sub _dataset {
     my $data = shift;
 
     return $data if ref($data) eq 'SVG::Graph::Data';

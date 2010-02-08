@@ -1,12 +1,18 @@
 CHANGES
-eg/.DS_Store
 eg/multi
 eg/normalize-primes
 eg/plot-primes
 eg/plot-rand
 eg/synopsis-section
+lib/.svn/entries
+lib/.svn/format
 lib/SVG/Graph/Kit.pm
 Makefile.PL
 MANIFEST			This list of files
-t/SVG-Graph-Kit.t
+README
+t/00-load.t
+t/01-methods.t
+t/boilerplate.t
+t/pod-coverage.t
+t/pod.t
 META.yml                                 Module meta-data (added by MakeMaker)
