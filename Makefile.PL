@@ -1,14 +1,58 @@
-#!/usr/bin/perl
+
 use strict;
 use warnings;
-use ExtUtils::MakeMaker;
-WriteMakefile(
-    NAME => 'SVG::Graph::Kit',
-    VERSION_FROM => 'lib/SVG/Graph/Kit.pm',
-    PREREQ_PM => { 'SVG::Graph' => 0 },
-    ($] >= 5.005
-        ? (ABSTRACT_FROM => 'lib/SVG/Graph/Kit.pm',
-           AUTHOR => 'Gene Boggs <gene@cpan.org>')
-        : ()
-    ),
+
+
+
+use ExtUtils::MakeMaker 6.30;
+
+
+
+my %WriteMakefileArgs = (
+  "ABSTRACT" => "Simplified data plotting with SVG",
+  "AUTHOR" => "Gene Boggs <gene\@cpan.org>",
+  "BUILD_REQUIRES" => {
+    "Test::More" => 0
+  },
+  "CONFIGURE_REQUIRES" => {
+    "ExtUtils::MakeMaker" => "6.30"
+  },
+  "DISTNAME" => "SVG-Graph-Kit",
+  "EXE_FILES" => [],
+  "LICENSE" => "perl",
+  "NAME" => "SVG::Graph::Kit",
+  "PREREQ_PM" => {
+    "SVG::Graph" => 0,
+    "SVG::Graph::Data" => 0,
+    "SVG::Graph::Data::Datum" => 0,
+    "base" => 0,
+    "strict" => 0,
+    "warnings" => 0
+  },
+  "VERSION" => "0.01",
+  "test" => {
+    "TESTS" => "t/*.t"
+  }
 );
+
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $WriteMakefileArgs{BUILD_REQUIRES};
+  my $pp = $WriteMakefileArgs{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $WriteMakefileArgs{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+WriteMakefile(%WriteMakefileArgs);
+
+
+

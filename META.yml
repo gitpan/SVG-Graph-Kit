@@ -1,22 +1,26 @@
---- #YAML:1.0
-name:               SVG-Graph-Kit
-version:            0.00_7
-abstract:           Simplified data plotting
+---
+abstract: 'Simplified data plotting with SVG'
 author:
-    - Gene Boggs <gene@cpan.org>
-license:            unknown
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
+  - 'Gene Boggs <gene@cpan.org>'
 build_requires:
-    ExtUtils::MakeMaker:  0
-requires:
-    SVG::Graph:  0
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.56
+  Test::More: 0
+configure_requires:
+  ExtUtils::MakeMaker: 6.30
+dynamic_config: 0
+generated_by: 'Dist::Zilla version 4.300016, CPAN::Meta::Converter version 2.120921'
+license: perl
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+name: SVG-Graph-Kit
+requires:
+  SVG::Graph: 0
+  SVG::Graph::Data: 0
+  SVG::Graph::Data::Datum: 0
+  base: 0
+  strict: 0
+  warnings: 0
+resources:
+  bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=SVG-Graph-Kit
+  repository: https://github.com/ology/Math/tree/master/SVG-Graph-Kit
+version: 0.01

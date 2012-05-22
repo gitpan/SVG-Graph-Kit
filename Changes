@@ -1,4 +1,9 @@
-Changes file for SVG::Graph::Kit
+Revision history for SVG-Graph-Kit
+
+0.01 May 22, 2012
+    - Refactored with Dist::Zilla
+    - Simplified axis options.
+    - Refactored data input.
 
 0.00_7 Feb 8 2009
     - Began to update this still-handy module.
