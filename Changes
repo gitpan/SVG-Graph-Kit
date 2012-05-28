@@ -1,5 +1,8 @@
 Revision history for SVG-Graph-Kit
 
+0.0102 May 28, 2012
+    - Removing crufty eg scripts.
+
 0.0101 May 28, 2012
     - Cleaned up logic and code.
     - Improved POD.

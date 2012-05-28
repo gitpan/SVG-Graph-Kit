@@ -23,4 +23,4 @@ requires:
 resources:
   bugtracker: https://rt.cpan.org/Public/Dist/Display.html?Name=SVG-Graph-Kit
   repository: https://github.com/ology/Math/tree/master/SVG-Graph-Kit
-version: 0.0101
+version: 0.0102

@@ -4,7 +4,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.0101';
+our $VERSION = '0.0102';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
@@ -170,7 +170,7 @@ Position axis orgin.
 
 =head1 SEE ALSO
 
-* The code in the F<eg/> and F<t/> directories.
+* The code in F<t/*>.
 
 * L<SVG::Graph>
 

@@ -24,7 +24,7 @@ $g = SVG::Graph::Kit->new(data => $data);
 #$g = SVG::Graph::Kit->new(data => $data, axis => { stroke => 'blue' });
 isa_ok $g, 'SVG::Graph::Kit';
 
-eval { $g->draw };
+my $x = eval { $g->draw };
 ok !$@, 'draw';
 __END__
 # DEBUG:
@@ -36,4 +36,4 @@ else {
     die "Disallowed characters in filename: '$output'";
 }
 open my $fh, '>', $output or die "Can't write to $output: $!\n";
-print $fh $g->draw, "\n";
+print $fh $x, "\n";
