@@ -1,5 +1,9 @@
 Revision history for SVG-Graph-Kit
 
+0.0101 May 28, 2012
+    - Cleaned up logic and code.
+    - Improved POD.
+
 0.01 May 22, 2012
     - Refactored with Dist::Zilla
     - Simplified axis options.

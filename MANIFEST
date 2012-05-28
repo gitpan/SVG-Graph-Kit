@@ -12,5 +12,6 @@ eg/plot-rand
 eg/synopsis-section
 lib/SVG/Graph/Kit.pm
 t/00-load.t
+t/01-methods.t
 t/01-methods.t.svg
 t/author-pod-spell.t

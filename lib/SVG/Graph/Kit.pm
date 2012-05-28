@@ -4,7 +4,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.0101';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
@@ -19,38 +19,45 @@ use SVG::Graph::Data::Datum;
                [ 4,  7, 2, 0.4, 5 ],
                [ 5, 11, 3, 0.8, 9 ],
                [ 6, 13, 5, 1.6, 2 ], ];
-  my $g = SVG::Graph::Kit->new(
-    data => $data,
-    plot => {
-      type => 'bezier',
-      'fill-opacity' => 0.5, # etc.
-    },
-    axis => {
-        'stroke-width' => 2,
-        stroke => 'gray', # etc.
-    },
-  );
+  my $g = SVG::Graph::Kit->new(data => $data);
+  print $g->draw;
 
 =head1 DESCRIPTION
 
-An C<SVG::Graph::Kit> object is a simplified, automated tool that
-allows data plotting without requiring any knowledge of the
-C<SVG::Graph> API.
+An C<SVG::Graph::Kit> object is an automated data plotter that is a
+subclass of C<SVG::Graph>.
 
 =head1 METHODS
 
 =head2 new()
 
-  my $obj = SVG::Graph::Kit->new(%arguments);
+  $g = SVG::Graph::Kit->new(%arguments);
+  $g = SVG::Graph::Kit->new();
+  $g = SVG::Graph::Kit->new(data => \@numeric);
+  $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
+  # Custom:
+  $g = SVG::Graph::Kit->new(
+    width => 300, height => 300, margin => 20,
+    data => [[0,0], [1,1]],
+    plot => {
+      type => 'line', # default: scatter
+      'fill-opacity' => 0.5, # etc.
+    },
+    axis => {
+        'stroke-width' => 2, # etc.
+    },
+  );
 
-Return a new C<SVG::Graph::Kit> instance with any given data or glyphs
-automatically added to the plot.
+Return a new C<SVG::Graph::Kit> instance.
 
-Where the arguments may be any of:
+Optional arguments:
 
   data => Numeric vectors (the datapoints)
   plot => Chart type and data rendering properties
-  axis => Axis rendering properties
+  axis => Axis rendering properties or 0 for off
+
+Except for the C<plot type>, the C<plot> and non-0 C<axis> arguments
+are ordinary CSS, 'a la C<SVG::Graph>.
 
 =cut
 
@@ -82,39 +89,22 @@ sub _setup {
     my $self = shift;
     my %args = @_;
 
-    my %label = ( x => [], y => [], z => [] );
+    # The SVG::Graph::Data object for use in label making.
+    my $graph_data;
 
     # Start with an initial frame...
     my $frame = $self->add_frame;
 
-    # Handle the data.
+    # Plot the data.
     if ($args{data}) {
-        # Create individual data points.
-        my @data = ();
-        for my $datum (@{ $args{data} }) {
-            # Find the minimum and maximum labels.
-            $label{x}[0] = $datum->[0] if not defined $label{x}[0] or $datum->[0] < $label{x}[0];
-            $label{x}[1] = $datum->[0] if not defined $label{x}[1] or $datum->[0] > $label{x}[1];
-            $label{y}[0] = $datum->[1] if not defined $label{y}[0] or $datum->[1] < $label{y}[0];
-            $label{y}[1] = $datum->[1] if not defined $label{y}[1] or $datum->[1] > $label{y}[1];
-            $label{z}[0] = $datum->[2] if not defined $label{z}[0] or $datum->[2] < $label{z}[0];
-            $label{z}[1] = $datum->[2] if not defined $label{z}[1] or $datum->[2] > $label{z}[1];
-
-            push @data, SVG::Graph::Data::Datum->new(
-                x => $datum->[0],
-                y => $datum->[1],
-                z => $datum->[2],
-            );
-        }
-        # Populate our graph with data.
-        my $data = SVG::Graph::Data->new(data => \@data);
-        $frame->add_data($data);
+        # Load the graph data.
+        $graph_data = _load_data($args{data}, $frame);
+        # Add the data to the graph.
         my %plot = (
             stroke         => $args{plot}{stroke}         || 'red',
             fill           => $args{plot}{fill}           || 'red',
             'fill-opacity' => $args{plot}{'fill-opacity'} || 0.5,
         );
-        # Add the data to the graph.
         $args{plot}{type} ||= 'scatter';
         $frame->add_glyph($args{plot}{type}, %plot);
     }
@@ -125,22 +115,48 @@ sub _setup {
     ) {
         # Initialize an empty axis unless given a hashref
         $args{axis} = {} if not ref $args{axis} eq 'HASH';
-        # Make tick labels.
+
         # Set the default properties and user override.
         my %axis = (
-            x_absolute_ticks => 1,
-            x_tick_labels    => [ $label{x}[0] .. $label{x}[1] ],
-            y_absolute_ticks => 1,
-            y_tick_labels    => [ $label{y}[0] .. $label{y}[1] ],
-            z_absolute_ticks => 1,
-            z_tick_labels    => [ $label{z}[0] .. $label{z}[1] ],
-            stroke           => 'gray',
-            'stroke-width'   => 2,
-            %{ $args{axis} },
+            stroke => 'gray',
+            'stroke-width' => 2,
+            %{ $args{axis} }, # User override
         );
+        unless (defined $axis{x_absolute_ticks} or defined $axis{x_fractional_ticks}) {
+            $axis{x_absolute_ticks} = 1;
+        }
+        unless (defined $axis{y_absolute_ticks} or defined $axis{y_fractional_ticks}) {
+            $axis{y_absolute_ticks} = 1;
+        }
+        if ($args{data} and !defined $axis{x_tick_labels}) {
+            $axis{x_tick_labels} = [ $graph_data->xmin .. $graph_data->xmax ];
+        }
+        if ($args{data} and !defined $axis{y_tick_labels}) {
+            $axis{y_tick_labels} = [ $graph_data->ymin .. $graph_data->ymax ];
+        }
+
        # Add the axis to the graph.
         $frame->add_glyph('axis', %axis);
     }
+}
+
+sub _load_data {
+    my ($data, $frame) = @_;
+    # Create individual data points.
+    my @data = ();
+    for my $datum (@$data) {
+        # Add our 3D data point.
+        push @data, SVG::Graph::Data::Datum->new(
+            x => $datum->[0],
+            y => $datum->[1],
+            z => $datum->[2],
+        );
+    }
+    # Instantiate a new SVG::Graph::Data object;
+    my $obj = SVG::Graph::Data->new(data => \@data);
+    # Populate our graph with data.
+    $frame->add_data($obj);
+    return $obj;
 }
 
 1;
