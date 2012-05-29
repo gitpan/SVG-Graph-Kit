@@ -4,7 +4,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.0301';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
@@ -13,12 +13,12 @@ use SVG::Graph::Data::Datum;
 =head1 SYNOPSIS
 
   use SVG::Graph::Kit;
-  my $data = [ [ 1,  2, 0, 0.0, 1 ],
-               [ 2,  3, 1, 0.1, 4 ],
-               [ 3,  5, 1, 0.2, 1 ],
-               [ 4,  7, 2, 0.4, 5 ],
-               [ 5, 11, 3, 0.8, 9 ],
-               [ 6, 13, 5, 1.6, 2 ], ];
+  my $data = [ [ 1,  2, 0 ],
+               [ 2,  3, 1 ],
+               [ 3,  5, 1 ],
+               [ 4,  7, 2 ],
+               [ 5, 11, 3 ],
+               [ 6, 13, 5 ], ];
   my $g = SVG::Graph::Kit->new(data => $data);
   print $g->draw;
   my $n;
@@ -52,6 +52,7 @@ subclass of C<SVG::Graph>.
     },
     axis => {
         'stroke-width' => 2, # etc.
+        threshold => $max_axis_data, # default: 30
     },
   );
 
@@ -63,8 +64,13 @@ Optional arguments:
   plot => Chart type and data rendering properties
   axis => Axis rendering properties or 0 for off
 
-Except for the C<plot type>, the C<plot> and non-0 C<axis> arguments
-are ordinary CSS, 'a la C<SVG::Graph>.
+Except for the C<plot type>, C<axis =E<gt> 0> and C<axis threshold>,
+the C<plot> and C<axis> arguments are ordinary CSS, 'a la
+C<SVG::Graph>.
+
+The C<plot type> is given in C<SVG::Graph>.  C<axis =E<gt> 0> turns
+off the rendering of the axis.  The C<axis threshold> represents
+the number of labeled tick marks displayed on a scaled graph.
 
 =cut
 
