@@ -1,5 +1,13 @@
 Revision history for SVG-Graph-Kit
 
+0.03 May 29, 2012
+    - Enable axis scaling.
+
+0.02 May 28, 2012
+    - Allowed calling of the statistics methods as given by SVG::Graph.
+    - Fixed the incorrect data labeling.
+    - Added work-around for x/y intercept in SVG::Graph.
+
 0.0102 May 28, 2012
     - Removing crufty eg scripts.
 

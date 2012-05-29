@@ -4,7 +4,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.0102';
+our $VERSION = '0.03';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
@@ -21,6 +21,13 @@ use SVG::Graph::Data::Datum;
                [ 6, 13, 5, 1.6, 2 ], ];
   my $g = SVG::Graph::Kit->new(data => $data);
   print $g->draw;
+  my $n;
+  for my $dim (qw(x y z)) {
+    for my $stat (qw(min max mean mode median range stdv percentile)) {
+      $n = $stat eq 'percentile' ? 90 : undef; # Inspect the 90th percentile.
+      printf "%s %s = %0.2f\n", $dim, $stat, $g->stat($dim, $stat, $n);
+    }
+  }
 
 =head1 DESCRIPTION
 
@@ -89,16 +96,13 @@ sub _setup {
     my $self = shift;
     my %args = @_;
 
-    # The SVG::Graph::Data object for use in label making.
-    my $graph_data;
-
     # Start with an initial frame...
     my $frame = $self->add_frame;
 
     # Plot the data.
     if ($args{data}) {
-        # Load the graph data.
-        $graph_data = _load_data($args{data}, $frame);
+        # Load the graph data and use the SVG::Graph::Data object for label making.
+        $self->{graph_data} = _load_data($args{data}, $frame);
         # Add the data to the graph.
         my %plot = (
             stroke         => $args{plot}{stroke}         || 'red',
@@ -109,35 +113,73 @@ sub _setup {
         $frame->add_glyph($args{plot}{type}, %plot);
     }
 
-    # Handle the axis.
-    if (not(exists $args{axis})                # There is no axis argument
-        or exists $args{axis} and $args{axis}  # Or there is one and it's true
-    ) {
-        # Initialize an empty axis unless given a hashref
-        $args{axis} = {} if not ref $args{axis} eq 'HASH';
-
-        # Set the default properties and user override.
-        my %axis = (
-            stroke => 'gray',
-            'stroke-width' => 2,
-            %{ $args{axis} }, # User override
-        );
-        unless (defined $axis{x_absolute_ticks} or defined $axis{x_fractional_ticks}) {
-            $axis{x_absolute_ticks} = 1;
-        }
-        unless (defined $axis{y_absolute_ticks} or defined $axis{y_fractional_ticks}) {
-            $axis{y_absolute_ticks} = 1;
-        }
-        if ($args{data} and !defined $axis{x_tick_labels}) {
-            $axis{x_tick_labels} = [ $graph_data->xmin .. $graph_data->xmax ];
-        }
-        if ($args{data} and !defined $axis{y_tick_labels}) {
-            $axis{y_tick_labels} = [ $graph_data->ymin .. $graph_data->ymax ];
-        }
-
-       # Add the axis to the graph.
+    # Handle the axis unless it's set to 0.
+    if (not(exists $args{axis}) or exists $args{axis} and $args{axis}) {
+        my %axis = $self->_load_axis($args{data}, $args{axis});
         $frame->add_glyph('axis', %axis);
     }
+}
+
+sub _load_axis {
+    my($self, $data, $axis) = @_;
+
+    # Initialize an empty axis unless given a hashref.
+    $axis = {} if not ref $axis eq 'HASH';
+
+    # Set the default properties and user override.
+    my %axis = (
+        x_intercept => 0,
+        y_intercept => 0,
+        stroke => 'gray',
+        'stroke-width' => 2,
+        threshold => 30, # Max data per axis
+        %$axis, # User override
+    );
+# TODO Note in POD that threshold => 0 means "do not scale."
+
+    # Compute scale factors.
+    my ($xscale, $yscale) = (1, 1);
+    if ($data and $axis{threshold} and ($self->{graph_data}->xmax - $self->{graph_data}->xmin) > $axis{threshold}) {
+        # Round to the integer, i.e. 0 decimal places.
+        $xscale = sprintf '%.0f', $self->{graph_data}->xmax / $axis{threshold};
+    }
+    if ($data and $axis{threshold} and $self->{graph_data}->ymax - $self->{graph_data}->ymin > $axis{threshold}) {
+        # Round to the integer, i.e. 0 decimal places.
+        $yscale = sprintf '%.0f', $self->{graph_data}->ymax / $axis{threshold};
+    }
+
+    # Use absolute_ticks if no tick mark setting is provided.
+    unless (defined $axis{x_absolute_ticks} or defined $axis{x_fractional_ticks}) {
+        $axis{x_absolute_ticks} = $xscale;
+    }
+    unless (defined $axis{y_absolute_ticks} or defined $axis{y_fractional_ticks}) {
+        $axis{y_absolute_ticks} = $yscale;
+    }
+
+    # Use increments of 1 to data-max for ticks if none are provided.
+    if ($data and !defined $axis{x_tick_labels} and !defined $axis{x_intertick_labels}) {
+        if ($xscale > 1) {
+            $axis{x_tick_labels} = [ $self->{graph_data}->xmin ];
+            push @{ $axis{x_tick_labels} }, $_ * $xscale for 1 .. $axis{threshold};
+        }
+        else {
+            $axis{x_tick_labels} = [ $self->{graph_data}->xmin .. $self->{graph_data}->xmax ];
+        }
+    }
+    if ($data and !defined $axis{y_tick_labels} and !defined $axis{y_intertick_labels}) {
+        if ($yscale > 1) {
+            $axis{y_tick_labels} = [ $self->{graph_data}->ymin ];
+            push @{ $axis{y_tick_labels} }, $_ * $yscale for 1 .. $axis{threshold};
+        }
+        else {
+            $axis{y_tick_labels} = [ $self->{graph_data}->ymin .. $self->{graph_data}->ymax ];
+        }
+    }
+
+    # Remove keys not used by parent module.
+    delete $axis{threshold};
+
+    return %axis;
 }
 
 sub _load_data {
@@ -159,14 +201,38 @@ sub _load_data {
     return $obj;
 }
 
+=head2 stat()
+
+  $g->stat($dimension, $name);
+  $g->stat('x', 'mean');
+  $g->stat('y', 'stdv');
+  $g->stat('z', 'percentile');
+  # etc.
+
+This method is a direct call to the appropriate C<SVG::Graph::Data>
+"x-method" (i.e. min, max, mean, mode, median, range, stdv and
+percentile).
+
+=cut
+
+
+sub stat {
+    my ($self, $dimension, $name, @args) = @_;
+    my $method = $dimension . $name;
+    return $self->{graph_data}->$method(@args);
+}
+
 1;
 __END__
 
 =head1 TO DO
 
-Scale axes.
+Allow log scaling.
 
 Position axis orgin.
+
+Call any C<Statistics::Descriptive> method, not just those given by
+C<SVG::Graph>.
 
 =head1 SEE ALSO
 
