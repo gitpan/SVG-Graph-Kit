@@ -1,5 +1,9 @@
 Revision history for SVG-Graph-Kit
 
+0.04 May 29, 2012
+    - Rename the "threshold" attribute to "ticks", "xticks" and "yticks."
+    - Improved POD.
+
 0.0301 May 29, 2012
     - Improved documentation.
 

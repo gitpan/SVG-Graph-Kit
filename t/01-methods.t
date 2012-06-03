@@ -7,17 +7,15 @@ BEGIN { use_ok('SVG::Graph::Kit') }
 
 my $g = eval { SVG::Graph::Kit->new };
 isa_ok $g, 'SVG::Graph::Kit', 'no arguments';
-
-my $data = [ [ 1,  2,  0,  0.0],
-             [ 2,  3,  1,  0.1],
-             [ 3,  5,  1,  0.2],
-             [ 4,  7,  2,  0.4],
-             [ 5, 11,  3,  0.8],
-             [ 6, 13,  5,  1.6],
-             [ 7, 17,  8,  3.2],
-             [ 8, 19, 13,  6.4],
-             [ 9, 23, 21, 12.8],
-             [10, 29, 34, 25.6] ];
+my $data = [ [ 1,  2,  0 ],
+             [ 3,  5,  1 ],
+             [ 4,  7,  2 ],
+             [ 5, 11,  3 ],
+             [ 6, 13,  5 ],
+             [ 7, 17,  8 ],
+             [ 8, 19, 13 ],
+             [ 9, 23, 21 ],
+             [10, 29, 34 ] ];
 $g = SVG::Graph::Kit->new(data => $data); # TODO Look for /<g id="scatter\w+">/ and axis in draw()
 #$g = SVG::Graph::Kit->new(axis => 0); # TODO ~! /<g id="axis\w+">/ in draw()
 #$g = SVG::Graph::Kit->new(axis => 1); # TODO ~= /<g id="axis\w+">/ in draw()

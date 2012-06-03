@@ -4,7 +4,7 @@ package SVG::Graph::Kit;
 use strict;
 use warnings;
 
-our $VERSION = '0.0301';
+our $VERSION = '0.04';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
@@ -44,15 +44,19 @@ subclass of C<SVG::Graph>.
   $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
   # Custom:
   $g = SVG::Graph::Kit->new(
+    data => \@numeric,
+    axis => { xticks => 10, yticks => 20 },
+  );
+  $g = SVG::Graph::Kit->new(
     width => 300, height => 300, margin => 20,
-    data => [[0,0], [1,1]],
+    data => [[0,2], [1,3] ... ],
     plot => {
       type => 'line', # default: scatter
       'fill-opacity' => 0.5, # etc.
     },
     axis => {
-        'stroke-width' => 2, # etc.
-        threshold => $max_axis_data, # default: 30
+      'stroke-width' => 2, # etc.
+      ticks => scalar @$data, # default: 30
     },
   );
 
@@ -64,13 +68,13 @@ Optional arguments:
   plot => Chart type and data rendering properties
   axis => Axis rendering properties or 0 for off
 
-Except for the C<plot type>, C<axis =E<gt> 0> and C<axis threshold>,
-the C<plot> and C<axis> arguments are ordinary CSS, 'a la
-C<SVG::Graph>.
+Except for the C<plot type>, C<axis =E<gt> 0> and C<axis ticks>, the
+C<plot> and C<axis> arguments are ordinary CSS, 'a la C<SVG::Graph>.
 
 The C<plot type> is given in C<SVG::Graph>.  C<axis =E<gt> 0> turns
-off the rendering of the axis.  The C<axis threshold> represents
-the number of labeled tick marks displayed on a scaled graph.
+off the rendering of the axis.  The C<axis ticks>, C<xticks> and
+C<yticks> values represent the number of labeled tick marks displayed
+on a scaled graph axis.
 
 =cut
 
@@ -138,20 +142,24 @@ sub _load_axis {
         y_intercept => 0,
         stroke => 'gray',
         'stroke-width' => 2,
-        threshold => 30, # Max data per axis
+        ticks => 30, # Max data per axis
         %$axis, # User override
     );
-# TODO Note in POD that threshold => 0 means "do not scale."
+# TODO Note in POD that ticks => 0 means "do not scale."
+
+    # Set the number of ticks to show on each axis.
+    $axis{xticks} ||= $axis{ticks};
+    $axis{yticks} ||= $axis{ticks};
 
     # Compute scale factors.
     my ($xscale, $yscale) = (1, 1);
-    if ($data and $axis{threshold} and ($self->{graph_data}->xmax - $self->{graph_data}->xmin) > $axis{threshold}) {
+    if ($data and $self->{graph_data}->xmax - $self->{graph_data}->xmin > $axis{xticks}) {
         # Round to the integer, i.e. 0 decimal places.
-        $xscale = sprintf '%.0f', $self->{graph_data}->xmax / $axis{threshold};
+        $xscale = sprintf '%.0f', $self->{graph_data}->xmax / $axis{xticks};
     }
-    if ($data and $axis{threshold} and $self->{graph_data}->ymax - $self->{graph_data}->ymin > $axis{threshold}) {
+    if ($data and $self->{graph_data}->ymax - $self->{graph_data}->ymin > $axis{yticks}) {
         # Round to the integer, i.e. 0 decimal places.
-        $yscale = sprintf '%.0f', $self->{graph_data}->ymax / $axis{threshold};
+        $yscale = sprintf '%.0f', $self->{graph_data}->ymax / $axis{yticks};
     }
 
     # Use absolute_ticks if no tick mark setting is provided.
@@ -166,7 +174,7 @@ sub _load_axis {
     if ($data and !defined $axis{x_tick_labels} and !defined $axis{x_intertick_labels}) {
         if ($xscale > 1) {
             $axis{x_tick_labels} = [ $self->{graph_data}->xmin ];
-            push @{ $axis{x_tick_labels} }, $_ * $xscale for 1 .. $axis{threshold};
+            push @{ $axis{x_tick_labels} }, $_ * $xscale for 1 .. $axis{ticks};
         }
         else {
             $axis{x_tick_labels} = [ $self->{graph_data}->xmin .. $self->{graph_data}->xmax ];
@@ -175,7 +183,7 @@ sub _load_axis {
     if ($data and !defined $axis{y_tick_labels} and !defined $axis{y_intertick_labels}) {
         if ($yscale > 1) {
             $axis{y_tick_labels} = [ $self->{graph_data}->ymin ];
-            push @{ $axis{y_tick_labels} }, $_ * $yscale for 1 .. $axis{threshold};
+            push @{ $axis{y_tick_labels} }, $_ * $yscale for 1 .. $axis{ticks};
         }
         else {
             $axis{y_tick_labels} = [ $self->{graph_data}->ymin .. $self->{graph_data}->ymax ];
@@ -183,7 +191,9 @@ sub _load_axis {
     }
 
     # Remove keys not used by parent module.
-    delete $axis{threshold};
+    delete $axis{ticks};
+    delete $axis{xticks};
+    delete $axis{yticks};
 
     return %axis;
 }
@@ -239,6 +249,12 @@ Position axis orgin.
 
 Call any C<Statistics::Descriptive> method, not just those given by
 C<SVG::Graph>.
+
+Highlight data points or areas.
+
+Draw grid lines.
+
+Add an C<SVG::Graph::polar> chart, somehow?
 
 =head1 SEE ALSO
 
