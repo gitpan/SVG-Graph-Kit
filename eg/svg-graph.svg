@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="600" width="600" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g id="n3421525">
+		<g id="scatter2449551" />
+		<g id="axis1181768" />
+		<g id="scattern1037764">
+			<circle cx="30" cy="338.571428571429" r="3" style="fill: red; fill-opacity: 0.5; stroke: red" />
+			<circle cx="165" cy="570" r="3" style="fill: red; stroke: red; fill-opacity: 0.5" />
+			<circle cx="300" cy="492.857142857143" r="3" style="fill-opacity: 0.5; stroke: red; fill: red" />
+			<circle cx="435" cy="107.142857142857" r="3" style="stroke: red; fill-opacity: 0.5; fill: red" />
+			<circle cx="570" cy="30" r="3" style="fill-opacity: 0.5; stroke: red; fill: red" />
+		</g>
+		<g id="axisn3371754">
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="570" y1="570" y2="570" />
+			<line style="stroke-width: 2; stroke: black" x1="30" x2="30" y1="30" y2="570" />
+			<line style="stroke-width: 2; stroke: black" x1="30" x2="30" y1="570" y2="573.75" />
+			<text transform="rotate(90,30,577.5)" x="30" y="577.5"></text>
+			<text transform="rotate(90,97.5,577.5)" x="97.5" y="577.5"></text>
+			<line style="stroke-width: 2; stroke: black" x1="165" x2="165" y1="570" y2="573.75" />
+			<text transform="rotate(90,165,577.5)" x="165" y="577.5"></text>
+			<text transform="rotate(90,232.5,577.5)" x="232.5" y="577.5"></text>
+			<line style="stroke-width: 2; stroke: black" x1="300" x2="300" y1="570" y2="573.75" />
+			<text transform="rotate(90,300,577.5)" x="300" y="577.5"></text>
+			<text transform="rotate(90,367.5,577.5)" x="367.5" y="577.5"></text>
+			<line style="stroke: black; stroke-width: 2" x1="435" x2="435" y1="570" y2="573.75" />
+			<text transform="rotate(90,435,577.5)" x="435" y="577.5"></text>
+			<text transform="rotate(90,502.5,577.5)" x="502.5" y="577.5"></text>
+			<line style="stroke: black; stroke-width: 2" x1="570" x2="570" y1="570" y2="573.75" />
+			<text transform="rotate(90,570,577.5)" x="570" y="577.5"></text>
+			<text transform="rotate(90,637.5,577.5)" x="637.5" y="577.5"></text>
+			<line style="stroke-width: 2; stroke: black" x1="30" x2="26.25" y1="570" y2="570" />
+			<text x="0" y="570"></text>
+			<text x="-37.5" y="570"></text>
+			<line style="stroke-width: 2; stroke: black" x1="30" x2="26.25" y1="492.857142857143" y2="492.857142857143" />
+			<text x="0" y="492.857142857143"></text>
+			<text x="97.5" y="492.857142857143"></text>
+			<line style="stroke-width: 2; stroke: black" x1="30" x2="26.25" y1="415.714285714286" y2="415.714285714286" />
+			<text x="0" y="415.714285714286"></text>
+			<text x="232.5" y="415.714285714286"></text>
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="26.25" y1="338.571428571429" y2="338.571428571429" />
+			<text x="0" y="338.571428571429"></text>
+			<text x="367.5" y="338.571428571429"></text>
+			<line style="stroke-width: 2; stroke: black" x1="30" x2="26.25" y1="261.428571428571" y2="261.428571428571" />
+			<text x="0" y="261.428571428571"></text>
+			<text x="502.5" y="261.428571428571"></text>
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="26.25" y1="184.285714285714" y2="184.285714285714" />
+			<text x="0" y="184.285714285714"></text>
+			<text x="637.5" y="184.285714285714"></text>
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="26.25" y1="107.142857142857" y2="107.142857142857" />
+			<text x="0" y="107.142857142857"></text>
+			<text x="772.5" y="107.142857142857"></text>
+			<line style="stroke: black; stroke-width: 2" x1="30" x2="26.25" y1="30" y2="30" />
+			<text x="0" y="30"></text>
+			<text x="907.5" y="30"></text>
+		</g>
+	</g>
+	<!-- 
+	Generated using the Perl SVG Module V2.59
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+ -->
+</svg>

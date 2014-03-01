@@ -1,0 +1,48 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use SVG::Graph;
+use SVG::Graph::Data;
+use SVG::Graph::Data::Datum;
+
+my $g = SVG::Graph->new(width => 600, height => 600, margin => 30);
+
+# Add a frame for each dataset.
+my $frame = $g->add_frame;
+
+# Data
+my @sample = qw(1 2 3 4 5);
+#my @data = map {SVG::Graph::Data::Datum->new(x => $_,y => $_^2)} qw(0 0 0 0 0 0 0); # XXX Can't have identical values!
+my @data = map { SVG::Graph::Data::Datum->new(x => $_, y => $_ ^ 2) } @sample;
+my $data = SVG::Graph::Data->new(data => \@data);
+$frame->add_data($data);
+$frame->add_glyph(
+    'scatter',     #add a scatterplot glyph
+    'stroke' => 'red',             #the dots will be outlined in red,
+    'fill'   => 'red',             #filled red,
+    'fill-opacity' => 0.5,         #and 50% opaque
+);
+
+# Axis
+$frame->add_glyph(
+    'axis',        #add an axis glyph
+    'x_absolute_ticks' => 1,       #with ticks every one unit on the x axis
+    'y_absolute_ticks' => 1,       #and ticks every one unit on the y axis
+#    'y_fractional_ticks' => 5,#@sample, # XXX ?
+    'stroke'           => 'black', #draw the axis black
+    'stroke-width'     => 2,       #and 2px thick
+);
+
+# Output
+#print $g->draw;
+my $d = $g->draw;
+my $output = "$0.svg";
+if ($output =~ /^([\/\w .-]+)$/) {
+    $output = $1;
+}
+else {
+    die "Disallowed characters in filename: '$output'";
+}
+open my $fh, '>', $output or die "Can't write to $output: $!\n";
+print $fh $d, "\n";

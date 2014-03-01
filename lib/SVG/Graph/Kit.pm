@@ -1,82 +1,19 @@
 package SVG::Graph::Kit;
+BEGIN {
+  $SVG::Graph::Kit::AUTHORITY = 'cpan:GENE';
+}
 # ABSTRACT: Simplified data plotting with SVG
 
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.0401';
 
 use base qw(SVG::Graph);
 use SVG::Graph::Data;
 use SVG::Graph::Data::Datum;
+use Math::Trig;
 
-=head1 SYNOPSIS
-
-  use SVG::Graph::Kit;
-  my $data = [ [ 1,  2, 0 ],
-               [ 2,  3, 1 ],
-               [ 3,  5, 1 ],
-               [ 4,  7, 2 ],
-               [ 5, 11, 3 ],
-               [ 6, 13, 5 ], ];
-  my $g = SVG::Graph::Kit->new(data => $data);
-  print $g->draw;
-  my $n;
-  for my $dim (qw(x y z)) {
-    for my $stat (qw(min max mean mode median range stdv percentile)) {
-      $n = $stat eq 'percentile' ? 90 : undef; # Inspect the 90th percentile.
-      printf "%s %s = %0.2f\n", $dim, $stat, $g->stat($dim, $stat, $n);
-    }
-  }
-
-=head1 DESCRIPTION
-
-An C<SVG::Graph::Kit> object is an automated data plotter that is a
-subclass of C<SVG::Graph>.
-
-=head1 METHODS
-
-=head2 new()
-
-  $g = SVG::Graph::Kit->new(%arguments);
-  $g = SVG::Graph::Kit->new();
-  $g = SVG::Graph::Kit->new(data => \@numeric);
-  $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
-  # Custom:
-  $g = SVG::Graph::Kit->new(
-    data => \@numeric,
-    axis => { xticks => 10, yticks => 20 },
-  );
-  $g = SVG::Graph::Kit->new(
-    width => 300, height => 300, margin => 20,
-    data => [[0,2], [1,3] ... ],
-    plot => {
-      type => 'line', # default: scatter
-      'fill-opacity' => 0.5, # etc.
-    },
-    axis => {
-      'stroke-width' => 2, # etc.
-      ticks => scalar @$data, # default: 30
-    },
-  );
-
-Return a new C<SVG::Graph::Kit> instance.
-
-Optional arguments:
-
-  data => Numeric vectors (the datapoints)
-  plot => Chart type and data rendering properties
-  axis => Axis rendering properties or 0 for off
-
-Except for the C<plot type>, C<axis =E<gt> 0> and C<axis ticks>, the
-C<plot> and C<axis> arguments are ordinary CSS, 'a la C<SVG::Graph>.
-
-The C<plot type> is given in C<SVG::Graph>.  C<axis =E<gt> 0> turns
-off the rendering of the axis.  The C<axis ticks>, C<xticks> and
-C<yticks> values represent the number of labeled tick marks displayed
-on a scaled graph axis.
-
-=cut
 
 sub new {
     my $class = shift;
@@ -84,7 +21,7 @@ sub new {
 
     # Move non-parent arguments to the kit.
     my %kit = ();
-    for my $arg (qw(axis data plot)) {
+    for my $arg (qw(axis data plot polar)) {
         next unless exists $args{$arg};
         $kit{$arg} = $args{$arg};
         delete $args{$arg};
@@ -112,7 +49,7 @@ sub _setup {
     # Plot the data.
     if ($args{data}) {
         # Load the graph data and use the SVG::Graph::Data object for label making.
-        $self->{graph_data} = _load_data($args{data}, $frame);
+        $self->{graph_data} = _load_data($args{data}, $frame, $args{polar});
         # Add the data to the graph.
         my %plot = (
             stroke         => $args{plot}{stroke}         || 'red',
@@ -143,13 +80,17 @@ sub _load_axis {
         stroke => 'gray',
         'stroke-width' => 2,
         ticks => 30, # Max data per axis
+        log => 0,
         %$axis, # User override
     );
-# TODO Note in POD that ticks => 0 means "do not scale."
 
     # Set the number of ticks to show on each axis.
     $axis{xticks} ||= $axis{ticks};
     $axis{yticks} ||= $axis{ticks};
+
+    # Set the logarithmic scaling factor.
+    $axis{xlog} ||= $axis{log};
+    $axis{ylog} ||= $axis{log};
 
     # Compute scale factors.
     my ($xscale, $yscale) = (1, 1);
@@ -194,20 +135,27 @@ sub _load_axis {
     delete $axis{ticks};
     delete $axis{xticks};
     delete $axis{yticks};
+    delete $axis{log};
+    delete $axis{xlog};
+    delete $axis{ylog};
 
     return %axis;
 }
 
 sub _load_data {
-    my ($data, $frame) = @_;
+    my ($data, $frame, $polar) = @_;
     # Create individual data points.
     my @data = ();
     for my $datum (@$data) {
+        # Set the coordinate.
+        my @coord = @$datum;
+        @coord = _to_polar($datum) if $polar;
+
         # Add our 3D data point.
         push @data, SVG::Graph::Data::Datum->new(
-            x => $datum->[0],
-            y => $datum->[1],
-            z => $datum->[2],
+            x => $coord[0],
+            y => $coord[1],
+            z => $coord[2],
         );
     }
     # Instantiate a new SVG::Graph::Data object;
@@ -216,6 +164,114 @@ sub _load_data {
     $frame->add_data($obj);
     return $obj;
 }
+
+sub _theta {
+    my $point = shift;
+#    return int(rand 359);
+    return atan2($point->[1], $point->[0]);
+}
+
+sub _to_polar {
+    my $point = shift;
+    my $r = 0;
+    $r += $_ ** 2 for @$point;
+    $r = sqrt $r;
+    my $t = _theta($point);
+    return $r, $t;
+}
+
+
+sub stat {
+    my ($self, $dimension, $name, @args) = @_;
+    my $method = $dimension . $name;
+    return $self->{graph_data}->$method(@args);
+}
+
+1;
+
+__END__
+
+=pod
+
+=encoding UTF-8
+
+=head1 NAME
+
+SVG::Graph::Kit - Simplified data plotting with SVG
+
+=head1 VERSION
+
+version 0.0401
+
+=head1 SYNOPSIS
+
+  use SVG::Graph::Kit;
+  my $data = [ [ 1,  2, 0 ],
+               [ 2,  3, 1 ],
+               [ 3,  5, 1 ],
+               [ 4,  7, 2 ],
+               [ 5, 11, 3 ],
+               [ 6, 13, 5 ], ];
+  my $g = SVG::Graph::Kit->new(data => $data);
+  print $g->draw;
+  my $n;
+  for my $dim (qw(x y z)) {
+    for my $stat (qw(min max mean mode median range stdv percentile)) {
+      $n = $stat eq 'percentile' ? 90 : undef; # Inspect the 90th percentile.
+      printf "%s %s = %0.2f\n", $dim, $stat, $g->stat($dim, $stat, $n);
+    }
+  }
+
+=head1 DESCRIPTION
+
+An C<SVG::Graph::Kit> object is an automated data plotter that is a
+subclass of C<SVG::Graph>.
+
+=head1 NAME
+
+SVG::Graph::Kit - Simplified data plotting with SVG
+
+=head1 METHODS
+
+=head2 new()
+
+  $g = SVG::Graph::Kit->new();
+  $g = SVG::Graph::Kit->new(data => \@numeric);
+  $g = SVG::Graph::Kit->new(data => \@numeric, axis => 0);
+  # Custom:
+  $g = SVG::Graph::Kit->new(
+    data => \@numeric,
+    axis => { xticks => 10, yticks => 20 },
+  );
+  $g = SVG::Graph::Kit->new(
+    width => 300, height => 300, margin => 20,
+    data => [[0,2], [1,3] ... ],
+    plot => {
+      type => 'line', # default: scatter
+      'fill-opacity' => 0.5, # etc.
+    },
+    axis => {
+      'stroke-width' => 2, # etc.
+      ticks => scalar @$data, # default: 30
+      log => 2, # Default factor 10
+    },
+  );
+
+Return a new C<SVG::Graph::Kit> instance.
+
+Optional arguments:
+
+  data => Numeric vectors (the datapoints)
+  plot => Chart type and data rendering properties
+  axis => Axis rendering properties or 0 for off
+
+Except for the C<plot type>, C<axis =E<gt> 0> and C<axis ticks>, the
+C<plot> and C<axis> arguments are ordinary CSS, 'a la C<SVG::Graph>.
+
+The C<plot type> is given in C<SVG::Graph>.  C<axis =E<gt> 0> turns
+off the rendering of the axis.  The C<axis ticks>, C<xticks> and
+C<yticks> values represent the number of labeled tick marks displayed
+on a scaled graph axis.
 
 =head2 stat()
 
@@ -229,23 +285,11 @@ This method is a direct call to the appropriate C<SVG::Graph::Data>
 "x-method" (i.e. min, max, mean, mode, median, range, stdv and
 percentile).
 
-=cut
-
-
-sub stat {
-    my ($self, $dimension, $name, @args) = @_;
-    my $method = $dimension . $name;
-    return $self->{graph_data}->$method(@args);
-}
-
-1;
-__END__
-
 =head1 TO DO
 
 Allow log scaling.
 
-Position axis orgin.
+Position axis origin.
 
 Call any C<Statistics::Descriptive> method, not just those given by
 C<SVG::Graph>.
@@ -254,25 +298,23 @@ Highlight data points or areas.
 
 Draw grid lines.
 
-Add an C<SVG::Graph::polar> chart, somehow?
+Add an C<SVG::Graph::polar> chart?
 
 =head1 SEE ALSO
 
-* The code in F<t/*>.
+The code in F<t/*>.
 
-* L<SVG::Graph>
-
-=head1 COPYRIGHT
-
-Copyright Gene Boggs, All Rights Reserved
-
-=head1 LICENSE
-
-You may use this module under the terms of the BSD, Artistic, or GPL 
-licenses, any version.
+L<SVG::Graph>
 
 =head1 AUTHOR
 
-Gene Boggs E<lt>gene@cpan.orgE<gt>
+Gene Boggs <gene@cpan.org>
+
+=head1 COPYRIGHT AND LICENSE
+
+This software is copyright (c) 2013 by Gene Boggs.
+
+This is free software; you can redistribute it and/or modify it under
+the same terms as the Perl 5 programming language system itself.
 
 =cut

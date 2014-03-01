@@ -1,5 +1,9 @@
 Revision history for SVG-Graph-Kit
 
+NEXT
+    - Added full compliment of dzil plugins.
+    - Replaced the missing NAME section in the POD. Oof!
+
 0.04 May 29, 2012
     - Rename the "threshold" attribute to "ticks", "xticks" and "yticks."
     - Improved POD.

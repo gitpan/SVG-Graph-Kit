@@ -1,0 +1,38 @@
+#!/usr/bin/perl
+use strict;
+use warnings;
+
+use Math::Fibonacci 'series';
+use SVG::Graph::Kit;
+
+my $x = shift || 10;
+
+@ARGV = '/Users/gene/bin/math/primes/0000002_611953.txt';
+my $i = 0;
+my @p = ();
+push @p, $_ while ($_ = <>) =~ s/\D//g && ++$i <= $x;
+$i = 0;
+my $p = [ map { [ ++$i, $_ ] } @p ];
+my $y = $p[-1];
+
+#$i = 0;
+#my $d = [ map { [ ++$i, $_ ] } series($x) ];
+#my $y = $d->[-1][1] > $p[-1] ? $d->[-1][1] : $p[-1];
+
+my $g = SVG::Graph::Kit->new(
+    _axis => {
+        grid => 1,
+        x => $x,
+        y => $y,
+        xs => int $x / 10,
+        ys => int $y / 10,
+    },
+    _items => [
+        { data => $p, line => { stroke => 'green' } },
+        { data => $p, scatter => { stroke => 'red' } },
+#        { data => $d, line => { stroke => 'yellow' } },
+#        { data => $d, scatter => { stroke => 'blue' } },
+    ],
+);
+
+print $g->draw;

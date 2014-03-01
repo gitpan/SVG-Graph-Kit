@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="273.795" width="273.795" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g id="group" style="stroke: gray; fill: none; stroke-opacity: 0.5; stroke-width: 0.5">
+		<rect height="136.8975" id="quadrant_2" width="136.8975" x="0" y="0" />
+		<rect height="136.8975" id="quadrant_4" width="136.8975" x="136.8975" y="136.8975" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_0" r="0" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_1" r="10" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_2" r="20" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_3" r="30" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_4" r="40" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_5" r="50" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_6" r="60" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_7" r="70" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_8" r="80" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_9" r="90" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_10" r="100" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_11" r="110" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_12" r="120" />
+		<circle cx="136.8975" cy="136.8975" id="circle_10_13" r="130" />
+		<circle cx="197.9725" cy="181.0595" id="circle_10x0" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="76.4375" cy="149.283" id="circle_10x1" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="141.8362" cy="207.7425" id="circle_10x2" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="130.584" cy="379.3525" id="circle_10x3" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="180.426" cy="-68.0175" id="circle_10x4" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="179.2115" cy="210.2175" id="circle_10x5" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="2.0325" cy="46.3075" id="circle_10x6" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="188.7525" cy="145.2635" id="circle_10x7" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="186.9725" cy="167.264" id="circle_10x8" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="141.21055" cy="239.1525" id="circle_10x9" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="87.4325" cy="379.0075" id="circle_10x10" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="72.5825" cy="161.4675" id="circle_10x11" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="179.2425" cy="195.2275" id="circle_10x12" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="143.2595" cy="202.1675" id="circle_10x13" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="175.1975" cy="139.2105" id="circle_10x14" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="106.122" cy="-33.7875" id="circle_10x15" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="58.6125" cy="170.9745" id="circle_10x16" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="5.22250000000003" cy="160.1635" id="circle_10x17" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="105.3005" cy="109.6055" id="circle_10x18" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="153.189" cy="-138.8325" id="circle_10x19" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="160.2195" cy="-72.9325" id="circle_10x20" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="15.8925" cy="357.0125" id="circle_10x21" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="50.2775" cy="193.6675" id="circle_10x22" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="134.16505" cy="90.047" id="circle_10x23" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="170.4055" cy="132.0314" id="circle_10x24" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="184.4055" cy="13.8325" id="circle_10x25" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="135.2635" cy="146.0595" id="circle_10x26" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="172.4025" cy="147.34" id="circle_10x27" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="102.562" cy="156.954" id="circle_10x28" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="198.1675" cy="82.8525" id="circle_10x29" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="111.39" cy="317.7475" id="circle_10x30" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="126.51" cy="178.84" id="circle_10x31" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="164.608" cy="410.6925" id="circle_10x32" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="126.116" cy="189.9375" id="circle_10x33" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="165.548" cy="346.3525" id="circle_10x34" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="100.62" cy="147.3465" id="circle_10x35" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="156.3025" cy="139.4582" id="circle_10x36" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="110.2505" cy="177.5" id="circle_10x37" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="143.3635" cy="62.4025" id="circle_10x38" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="95.3055" cy="67.3425" id="circle_10x39" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="167.6365" cy="34.8175" id="circle_10x40" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="118.002" cy="204.1425" id="circle_10x41" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="196.9775" cy="130.266" id="circle_10x42" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="133.6674" cy="140.3097" id="circle_10x43" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="225.0975" cy="81.6625" id="circle_10x44" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="220.3725" cy="45.3625" id="circle_10x45" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="64.3225" cy="167.7645" id="circle_10x46" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="99.7475" cy="13.4925" id="circle_10x47" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="153.5315" cy="59.8725" id="circle_10x48" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="84.9725" cy="137.75785" id="circle_10x49" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="181.367" cy="183.1205" id="circle_10x50" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="193.2925" cy="130.0555" id="circle_10x51" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="113.71" cy="7.0925" id="circle_10x52" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="124.486" cy="176.0265" id="circle_10x53" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="216.9875" cy="222.9175" id="circle_10x54" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="109.9105" cy="180.563" id="circle_10x55" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="193.4125" cy="66.2825" id="circle_10x56" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="153.703" cy="107.694" id="circle_10x57" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="112.1865" cy="133.3342" id="circle_10x58" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="159.892" cy="113.434" id="circle_10x59" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="133.47555" cy="292.2025" id="circle_10x60" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="129.2165" cy="164.7755" id="circle_10x61" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="159.318" cy="172.2765" id="circle_10x62" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="162.824" cy="192.9125" id="circle_10x63" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="151.8495" cy="202.1225" id="circle_10x64" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="114.473" cy="148.2415" id="circle_10x65" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="74.9075" cy="64.6275" id="circle_10x66" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="202.1125" cy="173.7795" id="circle_10x67" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="109.974" cy="160.854" id="circle_10x68" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="173.1705" cy="173.0105" id="circle_10x69" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="162.6715" cy="187.0225" id="circle_10x70" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="124.432" cy="153.1935" id="circle_10x71" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="166.7405" cy="183.219" id="circle_10x72" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="73.2375" cy="137.5674" id="circle_10x73" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="192.8475" cy="53.0975" id="circle_10x74" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="108.348" cy="159.6135" id="circle_10x75" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="49.5875" cy="208.7675" id="circle_10x76" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="193.9125" cy="-7.1525" id="circle_10x77" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="127.2135" cy="251.9425" id="circle_10x78" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="135.7976" cy="23.0825" id="circle_10x79" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="107.2925" cy="138.9605" id="circle_10x80" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="47.2875" cy="150.805" id="circle_10x81" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="147.594" cy="105.62" id="circle_10x82" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="156.7835" cy="103.3375" id="circle_10x83" r="0.5" style="stroke: black; fill: none; stroke-width: 0.5" />
+		<circle cx="11.3875" cy="157.6" id="circle_10x84" r="0.5" style="stroke-width: 0.5; fill: none; stroke: black" />
+		<circle cx="110.645" cy="55.3725" id="circle_10x85" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="107.903" cy="122.154" id="circle_10x86" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="99.0305" cy="290.5425" id="circle_10x87" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+		<circle cx="67.0725" cy="106.393" id="circle_10x88" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="219.0975" cy="163.409" id="circle_10x89" r="0.5" style="fill: none; stroke: black; stroke-width: 0.5" />
+		<circle cx="27.2175" cy="136.1385" id="circle_10x90" r="0.5" style="stroke-width: 0.5; stroke: black; fill: none" />
+	</g>
+	<!-- 
+	Generated using the Perl SVG Module V2.59
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+ -->
+</svg>

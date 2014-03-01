@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg height="600" width="600" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<g id="n9852257">
+		<g id="line4546587" />
+		<g id="axis3358219" />
+		<g id="linen2800615">
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="35" x2="36.7547451596794" y1="370.243777663664" y2="370.174785025861" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="36.7547451596794" x2="54.5502734201425" y1="370.174785025861" y2="369.981602695904" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="54.5502734201425" x2="57.6071565743142" y1="369.981602695904" y2="371.920952619003" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="57.6071565743142" x2="58.9907419100791" y1="371.920952619003" y2="366.404869377358" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="58.9907419100791" x2="59.6392502845847" y1="366.404869377358" y2="367.463416132528" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="59.6392502845847" x2="60.49891256972" y1="367.463416132528" y2="371.827930350178" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="60.49891256972" x2="64.9690012400033" y1="371.827930350178" y2="361.965372315417" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="64.9690012400033" x2="69.0198351818383" y1="361.965372315417" y2="368.893441649363" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="69.0198351818383" x2="70.0585630449571" y1="368.893441649363" y2="373.349136720512" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="70.0585630449571" x2="75.3808520433335" y1="373.349136720512" y2="349.593617014759" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="75.3808520433335" x2="79.3551140112397" y1="349.593617014759" y2="370.492810362529" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="79.3551140112397" x2="79.7446150729688" y1="370.492810362529" y2="364.660563609128" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="79.7446150729688" x2="80.3191571850072" y1="364.660563609128" y2="358.492354587887" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="80.3191571850072" x2="89.1944457421976" y1="358.492354587887" y2="322.789823825095" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="89.1944457421976" x2="90.3700464574622" y1="322.789823825095" y2="371.456171586486" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="90.3700464574622" x2="93.5452888603038" y1="371.456171586486" y2="383.508295750703" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="93.5452888603038" x2="95.5690068622271" y1="383.508295750703" y2="363.381812650677" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="95.5690068622271" x2="95.8362958261029" y1="363.381812650677" y2="367.720110820125" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="95.8362958261029" x2="99.8546030685406" y1="367.720110820125" y2="364.555941140028" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="99.8546030685406" x2="101.562197137232" y1="364.555941140028" y2="381.933340057094" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="101.562197137232" x2="106.86609405378" y1="381.933340057094" y2="366.440032315838" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="106.86609405378" x2="109.193254900761" y1="366.440032315838" y2="364.669703722669" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="109.193254900761" x2="109.9114631385" y1="364.669703722669" y2="367.115471489486" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="109.9114631385" x2="113.401886590218" y1="367.115471489486" y2="393.90749259562" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="113.401886590218" x2="115.416824271849" y1="393.90749259562" y2="359.28612585657" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="115.416824271849" x2="117.368160476669" y1="359.28612585657" y2="378.748533094201" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="117.368160476669" x2="121.763276536655" y1="378.748533094201" y2="366.091519145107" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="121.763276536655" x2="125.25744955837" y1="366.091519145107" y2="362.715309476842" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="125.25744955837" x2="126.009926720672" y1="362.715309476842" y2="369.015568127265" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="126.009926720672" x2="128.307237771367" y1="369.015568127265" y2="414.774075809642" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="128.307237771367" x2="130.585481087826" y1="414.774075809642" y2="365.652512043158" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="130.585481087826" x2="131.330500764305" y1="365.652512043158" y2="383.730107573595" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="131.330500764305" x2="132.23588879854" y1="383.730107573595" y2="312.381688961268" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="132.23588879854" x2="132.664863802025" y1="312.381688961268" y2="366.782321527512" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="132.664863802025" x2="134.496361404211" y1="366.782321527512" y2="359.690624840504" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="134.496361404211" x2="135.969542168847" y1="359.690624840504" y2="375.983566484052" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="135.969542168847" x2="137.267015867886" y1="375.983566484052" y2="374.017952363698" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="137.267015867886" x2="141.368128085878" y1="374.017952363698" y2="387.384068021562" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="141.368128085878" x2="142.772442828152" y1="387.384068021562" y2="357.657591675561" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="142.772442828152" x2="147.066947788965" y1="357.657591675561" y2="432.887576140936" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="147.066947788965" x2="149.383335788894" y1="432.887576140936" y2="406.866823771304" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="149.383335788894" x2="150.875969713649" y1="406.866823771304" y2="381.452551312288" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="150.875969713649" x2="152.514990199335" y1="381.452551312288" y2="358.55970711744" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="152.514990199335" x2="152.842585368134" y1="358.55970711744" y2="378.200902613884" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="152.842585368134" x2="153.36326708381" y1="378.200902613884" y2="383.193228253489" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="153.36326708381" x2="154.861442386553" y1="383.193228253489" y2="357.935771271085" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="154.861442386553" x2="156.524807917204" y1="357.935771271085" y2="371.248355781089" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="156.524807917204" x2="157.139432756663" y1="371.248355781089" y2="359.235277376685" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="157.139432756663" x2="157.353624096806" y1="359.235277376685" y2="381.762181455856" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="157.353624096806" x2="158.962990233952" y1="381.762181455856" y2="381.02386095696" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="158.962990233952" x2="167.282377350017" y1="381.02386095696" y2="389.461583916798" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="167.282377350017" x2="169.0280913607" y1="389.461583916798" y2="356.90565652868" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="169.0280913607" x2="170.935256993369" y1="356.90565652868" y2="56.6404177198861" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="170.935256993369" x2="172.511246037808" y1="56.6404177198861" y2="206.529258436221" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="172.511246037808" x2="173.434606345142" y1="206.529258436221" y2="361.433735522794" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="173.434606345142" x2="174.461311024551" y1="361.433735522794" y2="373.458093225926" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="174.461311024551" x2="175.441324971876" y1="373.458093225926" y2="379.200921411178" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="175.441324971876" x2="176.226960518096" y1="379.200921411178" y2="378.689917073385" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="176.226960518096" x2="178.859633993825" y1="378.689917073385" y2="356.173729683669" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="178.859633993825" x2="181.199220165247" y1="356.173729683669" y2="355.94769231356" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="181.199220165247" x2="182.901962335463" y1="355.94769231356" y2="355.627802920815" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="182.901962335463" x2="186.451943151359" y1="355.627802920815" y2="372.173123199827" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="186.451943151359" x2="190.671071079465" y1="372.173123199827" y2="358.802124866828" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="190.671071079465" x2="193.044253028499" y1="358.802124866828" y2="347.328938216077" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="193.044253028499" x2="194.330202417496" y1="347.328938216077" y2="361.204164720654" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="194.330202417496" x2="203.206516875899" y1="361.204164720654" y2="386.568767199833" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="203.206516875899" x2="205.097743938548" y1="386.568767199833" y2="232.435680584093" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="205.097743938548" x2="206.414570957331" y1="232.435680584093" y2="350.933806887611" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="206.414570957331" x2="213.132135456788" y1="350.933806887611" y2="359.218182070849" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="213.132135456788" x2="221.427381092373" y1="359.218182070849" y2="296.669346611199" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="221.427381092373" x2="221.721253795683" y1="296.669346611199" y2="353.241260014982" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="221.721253795683" x2="224.415382400236" y1="353.241260014982" y2="381.680872439305" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="224.415382400236" x2="228.69209975615" y1="381.680872439305" y2="356.486386720804" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="228.69209975615" x2="234.198118160352" y1="356.486386720804" y2="360.426306677355" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="234.198118160352" x2="237.920349382974" y1="360.426306677355" y2="565" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="237.920349382974" x2="244.967986388039" y1="565" y2="35" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="244.967986388039" x2="247.257464012214" y1="35" y2="235.055851194196" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="247.257464012214" x2="249.3631975491" y1="235.055851194196" y2="383.39153256249" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="249.3631975491" x2="257.825493427614" y1="383.39153256249" y2="399.718699632512" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="257.825493427614" x2="266.848281171244" y1="399.718699632512" y2="375.512591041301" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="266.848281171244" x2="297.52289437881" y1="375.512591041301" y2="364.305247920263" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="297.52289437881" x2="301.65609000743" y1="364.305247920263" y2="368.353371942943" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="301.65609000743" x2="322.046596132938" y1="368.353371942943" y2="352.085340908285" />
+			<line style="stroke: red; fill-opacity: 0.5; fill: red" x1="322.046596132938" x2="365.203707685512" y1="352.085340908285" y2="352.12707592147" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="365.203707685512" x2="394.226962936658" y1="352.12707592147" y2="351.586718467312" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="394.226962936658" x2="416.55811971288" y1="351.586718467312" y2="355.868448069873" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="416.55811971288" x2="431.173385809576" y1="355.868448069873" y2="398.029497868696" />
+			<line style="stroke: red; fill: red; fill-opacity: 0.5" x1="431.173385809576" x2="495.464299517421" y1="398.029497868696" y2="378.849290275443" />
+			<line style="fill: red; fill-opacity: 0.5; stroke: red" x1="495.464299517421" x2="529.09078806803" y1="378.849290275443" y2="390.983154944714" />
+			<line style="fill-opacity: 0.5; fill: red; stroke: red" x1="529.09078806803" x2="565" y1="390.983154944714" y2="359.744126121513" />
+		</g>
+		<g id="axisn5127062">
+			<line style="stroke: gray; stroke-width: 2" x1="35" x2="565" y1="565" y2="565" />
+			<line style="stroke-width: 2; stroke: gray" x1="35" x2="35" y1="35" y2="565" />
+			<line style="stroke: gray; stroke-width: 2" x1="35" x2="35" y1="565" y2="569.375" />
+			<text transform="rotate(90,35,573.75)" x="35" y="573.75">0</text>
+			<text transform="rotate(90,-11.6396384313769,573.75)" x="-11.6396384313769" y="573.75"></text>
+			<line style="stroke-width: 2; stroke: gray" x1="143.249033197982" x2="143.249033197982" y1="565" y2="569.375" />
+			<text transform="rotate(90,143.249033197982,573.75)" x="143.249033197982" y="573.75">1</text>
+			<text transform="rotate(90,96.6093947666054,573.75)" x="96.6093947666054" y="573.75"></text>
+			<line style="stroke: gray; stroke-width: 2" x1="251.498066395965" x2="251.498066395965" y1="565" y2="569.375" />
+			<text transform="rotate(90,251.498066395965,573.75)" x="251.498066395965" y="573.75">2</text>
+			<text transform="rotate(90,204.858427964588,573.75)" x="204.858427964588" y="573.75"></text>
+			<line style="stroke-width: 2; stroke: gray" x1="359.747099593947" x2="359.747099593947" y1="565" y2="569.375" />
+			<text transform="rotate(90,359.747099593947,573.75)" x="359.747099593947" y="573.75">3</text>
+			<text transform="rotate(90,313.10746116257,573.75)" x="313.10746116257" y="573.75"></text>
+			<line style="stroke-width: 2; stroke: gray" x1="467.996132791929" x2="467.996132791929" y1="565" y2="569.375" />
+			<text transform="rotate(90,467.996132791929,573.75)" x="467.996132791929" y="573.75">4</text>
+			<text transform="rotate(90,421.356494360552,573.75)" x="421.356494360552" y="573.75"></text>
+			<line style="stroke: gray; stroke-width: 2" x1="35" x2="30.625" y1="565" y2="565" />
+			<text x="0" y="565">1</text>
+			<text x="150.785303724672" y="565"></text>
+		</g>
+	</g>
+	<!-- 
+	Generated using the Perl SVG Module V2.59
+	by Ronan Oger
+	Info: http://www.roitsystems.com/
+ -->
+</svg>

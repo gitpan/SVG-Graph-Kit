@@ -1,9 +1,9 @@
 #!perl -T
 use strict;
 use warnings;
-use Test::More 'no_plan';
+use Test::More;
 
-BEGIN { use_ok('SVG::Graph::Kit') }
+use_ok 'SVG::Graph::Kit';
 
 my $g = eval { SVG::Graph::Kit->new };
 isa_ok $g, 'SVG::Graph::Kit', 'no arguments';
@@ -33,6 +33,8 @@ for my $dim (qw(x y z)) {
 
 my $d = eval { $g->draw };
 ok !$@, 'draw';
+done_testing();
+
 __END__
 # DEBUG:
 my $output = "$0.svg";
